@@ -1,0 +1,87 @@
+{% extends 'admin/userbase.html' %}
+
+{% block pagecontent %}
+      <div class="container-fluid">
+        
+        <div class="row justify-content-center mb-4">
+          <div class="col bold">
+            
+            <p><span>Name:</span> {{b.user_fname}} {{b.user_lname}}</p>
+            <p><span>Email:</span>  {{b.user_email}}</p>
+            <p><span>Address:</span>  {{b.user_address}}</p>
+            <p><span>Phone:</span>  {{b.user_phone}}</p>
+            
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+          <div class="col bold">
+            <h4>History</h4>
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Who</th>
+                  <th scope="col">caregiver</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              {% if deets:%} <!--i.e if user is logged in-->
+              <tbody>
+                {% for user, booking, userclient, caregiver in deets %}
+                <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td>{{userclient.client_fullname}}</td>
+                  <td>{{caregiver.care_fname}}-{{caregiver.care_lname}}</td>
+                  <td>{{booking.booking_start_date}}</td>
+                  <td>{{booking.booking_status}}</td>
+                </tr>
+                {% endfor %}
+  
+                {% else %}
+                
+                {% endif %}
+            </table>
+            
+          </div>
+        </div>
+
+
+        <div class="row justify-content-center mb-4">
+            <div class="col bold">
+              <h4>Payment History</h4>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">For Who</th>
+                    <th scope="col">Reference number</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                {% if deets:%} <!--i.e if user is logged in-->
+                <tbody>
+                  {% for user, Payment, userclient in paydeets %}
+                  <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{userclient.client_fullname}}</td>
+                    <td>{{Payment.pay_ref}}</td>
+                    <td>{{Payment.pay_amt}}</td>
+                    <td>{{Payment.pay_date}}</td>
+                    <td>{{Payment.pay_status}}</td>
+                  </tr>
+                  {% endfor %}
+    
+                  {% else %}
+                  
+                  {% endif %}
+              </table>
+              
+            </div>
+          </div>
+  </div>
+
+{% endblock %}

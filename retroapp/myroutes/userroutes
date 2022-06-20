@@ -1,0 +1,199 @@
+'''This file is like the controller, it determines what the user sees, when they visit our app/routes'''
+from ast import Break
+from crypt import methods
+import email, json, requests, random
+from email.headerregistry import Address
+from urllib import response
+from xml.etree.ElementTree import Comment
+from flask import make_response, render_template, request, abort, redirect, flash, session
+from sqlalchemy import desc
+from retroapp import app, db
+from retroapp.mymodels import Guarantor, User, State, Caregiver
+from retroapp.forms import LoginForm, ContactusForm, RegisterForm, SignUpForm
+
+# This is the home route
+@app.route("/")
+def home():
+    return render_template("user/retro2.html")
+
+
+@app.route("/user/signup", methods=['POST', 'GET'])
+def signup():
+    signup = RegisterForm()
+    if request.method == 'GET':
+        state = db.session.query(State).all()
+        return render_template('/user/signup.html' ,signup = signup, state = state)
+    else:
+        #retrieve form data
+        email = request.form.get('email')
+        pwd1 = request.form.get('pwd1')
+        pwd2 = request.form.get('pwd2')
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        address = request.form.get('address')
+        address2 = request.form.get('address2')
+        state = request.form.get('state')
+        phone = request.form.get('phone')
+
+
+        if email == '' or pwd1 == '' or pwd2 == ''  or fname == '' or lname == '' or  address == '' or address2 == '' or state == '' or phone == '':
+            flash('Please complete all fields')
+            return redirect('/user/signup')
+        elif pwd1 != pwd2:
+            flash('please make sure both passwords match')
+            return redirect('/user/signup')
+        else:
+            u = User(user_email=email,
+            user_pass=pwd1,
+            user_pass2=pwd2, 
+            user_fname=fname, 
+            user_lname=lname, 
+            user_gender = 'male',
+            user_address = address,
+            user_address2 = address2,
+            user_phone = phone,
+            state_id = state)
+            db.session.add(u)
+            db.session.commit()
+            id = u.user_id
+            session['loggedin'] = id
+            return redirect('/user/profile')
+
+
+@app.route('/user/login', methods=['POST', 'GET']) 
+def submit_login():
+    login = LoginForm()
+    if request.method == 'GET':
+        return render_template('user/login.html', login=login)
+    else:
+        '''We retrieve the form data'''
+        username = request.form.get('username') #method1
+        # pwd = login.pwd.data #method 2
+        pwd =  request.form.get('pwd')
+        # validate
+        if login.validate_on_submit():
+            deets = User.query.filter(User.user_email==username, User.user_pass==pwd).first()
+            if deets:
+                #retrieve user's id and then keep in session , we still use the same loggedin session we use below both are trying to log the user in
+                id = deets.user_id
+                session['loggedin']=id
+               
+                return redirect('/user/profile')
+            else:
+        
+                flash('Username or password incorrect')
+                return redirect('/user/login')
+        else:
+            return render_template('user/login.html', login=login)
+
+
+@app.route('/user/profile', methods=['GET','POST'])
+def user_profile():
+    loggedin = session.get('loggedin')
+    if loggedin == None:
+        return redirect("/user/login")
+    else:
+        userdeets = db.session.query(User).get(loggedin)
+        return render_template('user/profile.html', userdeets=userdeets)
+
+
+@app.route('/user/logout', methods=['GET','POST'])
+def logout():
+    session.pop('loggedin')
+    return redirect('/')
+
+
+
+@app.route('/user/manage', methods=['GET','POST'])
+def user_manage():
+    loggedin = session.get('loggedin')
+    if loggedin == None:
+        return redirect("/user/login")
+    else:
+        userdeets = db.session.query(User).get(loggedin)
+        return render_template('user/manage_service.html', userdeets=userdeets)
+
+
+
+
+@app.route('/user/history', methods=['GET','POST'])
+def user_history():
+    loggedin = session.get('loggedin')
+    if loggedin == None:
+        return redirect("/user/login")
+    else:
+        userdeets = db.session.query(User).get(loggedin)
+        return render_template('user/history.html', userdeets=userdeets)
+
+
+@app.route('/user/reward', methods=['GET','POST'])
+def user_reward():
+    loggedin = session.get('loggedin')
+    if loggedin == None:
+        return redirect("/user/login")
+    else:
+        userdeets = db.session.query(User).get(loggedin)
+        return render_template('user/reward.html', userdeets=userdeets)
+
+
+
+@app.route('/user/resetpassword', methods=['GET','POST'])
+def user_reset():
+    loggedin = session.get('loggedin')
+    if loggedin == None:
+        return redirect("/user/login")
+    else:
+        userdeets = db.session.query(User).get(loggedin)
+        return render_template('user/change_password.html', userdeets=userdeets)
+
+
+
+
+
+
+
+
+
+########################################################################################################################################
+
+
+@app.route("/care/register", methods=['POST', 'GET'])
+def care_register():
+    login = SignUpForm()
+    if request.method == 'GET':
+        care = db.session.query(Caregiver).all()
+        state = db.session.query(State).all()
+        return render_template('/user/caregiver_register.html' ,login = login, care = care, state = state)
+    else:
+        #retrieve form data
+        email = request.form.get('email')
+        pwd1 = request.form.get('pwd1')
+        pwd2 = request.form.get('pwd2')
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        address = request.form.get('address')
+        address2 = request.form.get('address2')
+        state = request.form.get('state')
+        phone = request.form.get('phone')
+
+
+        if email == '' or pwd1 == '' or pwd2 == ''  or fname == '' or lname == '' or  address == '' or address2 == '' or state == '' or phone == '':
+            flash('Please complete all fields')
+            return redirect('/user/signup')
+
+        else:
+            u = User(user_email=email,
+            user_pass=pwd1,
+            user_pass2=pwd2, 
+            user_fname=fname, 
+            user_lname=lname, 
+            user_gender = 'male',
+            user_address = address,
+            user_address2 = address2,
+            user_phone = phone,
+            state_id = state)
+            db.session.add(u)
+            db.session.commit()
+            id = u.user_id
+            session['loggedin'] = id
+            return redirect('/user/profile')

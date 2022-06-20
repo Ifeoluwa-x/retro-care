@@ -1,0 +1,30 @@
+
+{% extends 'user/userbase.html' %}
+
+{% block pagecontent %}
+      <div class="contain">
+        <div class="cases">
+          <p>📑</p>
+          <h4>HISTORY</h4>
+          <br>
+          <br>
+          <a class="btn btn-success" href="{{ url_for('user_history') }}">History</a>
+        </div>
+        <div class="cases">
+          <p>🏦</p>
+          <h4>PAYMENT</h4>
+          <br>
+          <br>
+          <a class="btn btn-success"  href="{{ url_for('user_client') }}">Payment</a>
+        </div>
+        <div class="cases">
+          <p>🛠</p>
+          <h4>SETTINGS</h4>  
+          <br>
+          <br>
+          <a  class="btn btn-success" href="{{ url_for('user_reset') }}">Change password</a>    
+        </div>
+    </div>
+  </div>
+  {% endblock %}
+

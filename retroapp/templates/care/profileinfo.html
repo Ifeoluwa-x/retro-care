@@ -1,0 +1,29 @@
+{% extends 'care/userbase.html' %}
+
+{% block pagecontent %}
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col rounded mb-5" style="min-height: 150px; max-width: 150px;">
+                <img class="img-fluid" src="/static/assests/img/hey.svg" />
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col"  style="min-height: 90px; max-width: 150px;">
+                <h5>{{caredeets.care_fname}} {{caredeets.care_lname}}</h5>
+                <span class="badge bg-warning">{{caredeets.care_status}}</span>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-3">
+            <div class="col">
+                <h5 class="text-center">You have successfully completed so and so numbers of care sessions</h5>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col ">
+                <h5 class="text-center">You are currently assigned to dash or You are currently unnassigned</h5>
+            </div>
+        </div>
+  </div>
+  
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'care/base.html' %}
+
+{% block pagecontent %}
+			<!--First section -->
+			<section class="banner mx-auto ">
+				<div class="row">
+					<div class="col banner">
+						<form class="mx-auto"  method="post" action="/care/register">
+
+
+							<div class="col-9 mb-3 mx-auto">
+							 	<label for="fullname" class="form-label">Fullname:</label>
+								 {% if login.fname1.errors%}
+								 {{ login.fname1(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s fullname')}}
+								 <div class="mb-3 col-md-5">
+								  {%  for error in login.fname1.errors %}
+								   <span>  {{error}}</span>
+									 {% endfor %}
+								  </div>
+								  {%else%}
+								  {{ login.fname1(class_='form-control form-control-lg ', placeholder='Guarantor\'s fullname')}}
+								  {% endif  %}
+							</div>
+
+
+
+
+
+
+							<div class="col-9 mb-3 mx-auto">
+								<label for="inputAddress" class="form-label">Address:</label>
+								{% if login.add1.errors%}
+								{{ login.add1(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s Address')}}
+								<div class="mb-3 col-md-5">
+								 {%  for error in login.add1.errors %}
+								  <span>  {{error}}</span>
+									{% endfor %}
+								 </div>
+								 {%else%}
+								 {{ login.add1(class_='form-control form-control-lg ', placeholder='Guarantor\'s Address')}}
+								 {% endif  %}
+						   </div>
+
+
+							<div class="col-9 mb-3 mx-auto">
+								<label for="inputPhone" class="form-label">Phone:</label>
+									{% if login.phone1.errors%}
+									{{ login.phone1(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s Phone')}}
+									<div class="mb-3 col-md-5">
+									 {%  for error in login.phone1.errors %}
+									  <span>  {{error}}</span>
+										{% endfor %}
+									 </div>
+									 {%else%}
+									 {{ login.phone1(class_='form-control form-control-lg ', placeholder='Guarantor\'s Phone')}}
+									 {% endif  %}
+							</div>
+
+
+                            <div class="col-9 mb-3 mx-auto">
+                                <label for="fullname" class="form-label">Fullname:</label>
+                                {% if login.fname2.errors%}
+                                {{ login.fname2(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s fullname')}}
+                                <div class="mb-3 col-md-5">
+                                 {%  for error in login.fname2.errors %}
+                                  <span>  {{error}}</span>
+                                    {% endfor %}
+                                 </div>
+                                 {%else%}
+                                 {{ login.fname2(class_='form-control form-control-lg ', placeholder='Guarantor\'s fullname')}}
+                                 {% endif  %}
+                           </div>
+
+
+
+
+
+
+                           <div class="col-9 mb-3 mx-auto">
+                               <label for="inputAddress" class="form-label">Address:</label>
+                               {% if login.add2.errors%}
+                               {{ login.add2(class_='form-control form-control-lg is-invalid', placeholder='>Guarantor\'s Address')}}
+                               <div class="mb-3 col-md-5">
+                                {%  for error in login.add2.errors %}
+                                 <span>  {{error}}</span>
+                                   {% endfor %}
+                                </div>
+                                {%else%}
+                                {{ login.add2(class_='form-control form-control-lg ', placeholder='Guarantor\'s Address')}}
+                                {% endif  %}
+                          </div>
+
+
+                           <div class="col-9 mb-3 mx-auto">
+                               <label for="inputPhone" class="form-label">Phone:</label>
+                                   {% if login.phone2.errors%}
+                                   {{ login.phone2(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s Phone')}}
+                                   <div class="mb-3 col-md-5">
+                                    {%  for error in login.phone2.errors %}
+                                     <span>  {{error}}</span>
+                                       {% endfor %}
+                                    </div>
+                                    {%else%}
+                                    {{ login.phone2(class_='form-control form-control-lg ', placeholder='Guarantor\'s Phone')}}
+                                    {% endif  %}
+                           </div>
+
+
+							
+							
+							<div class=" mx-auto mb-3 col-9" >
+								{{ login.loginbtn(class_='btn btn-success col-12')}} 
+								{{ login.csrf_token}}
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			
+			{% endblock %}

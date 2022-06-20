@@ -1,0 +1,63 @@
+{% extends 'admin/base.html' %}
+
+{% block pagecontent %}
+			<section class="login">
+				<div class="banner ">
+					<h3 class="ml-5 mt-5">Login your details here...</h3>
+					<br>
+					 <form class="login banner" action="/admin/submit/login" method="post"> 
+					  <div class="mb-3 col-md-5 mx-auto ">
+					    <label for="exampleInputEmail1" class="form-label">Email address</label>
+						{% if login.username.errors%}
+					   {{ login.username(class_='form-control form-control-lg is-invalid', placeholder='email address')}}
+					   <div class="mb-3 col-md-5 mx-auto">
+						{%  for error in login.username.errors %}
+						 <span>  {{error}}</span>
+						   {% endfor %}
+						</div>
+						{%else%}
+						{{ login.username(class_='form-control form-control-lg', placeholder='email address')}}
+						{% endif  %}
+					    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+					  </div>
+					  <!--  -->
+					  <div class="mb-3 col-md-5 mx-auto">
+					    <label for="exampleInputPassword1" class="form-label">Password</label>
+						{% if login.pwd.errors%}
+					   {{ login.pwd(class_='form-control form-control-lg is-invalid', placeholder='Password')}}
+					   <div class="mb-3 col-md-5 mx-auto">
+						{%  for error in login.pwd.errors %}
+						 <span>  {{error}}</span>
+						   {% endfor %}
+						</div>
+						{%else%}
+						{{ login.pwd(class_='form-control form-control-lg', placeholder='Password')}}
+						{% endif  %}
+					  </div>
+					  <!--  -->
+					  
+					 <div class="d-grid gap-2 col-md-5 mb-2 mx-auto">
+						  {{ login.loginbtn(class_='btn btn-success')}} 
+									{{ login.csrf_token}}
+
+
+
+					</div>
+						{% with m = get_flashed_messages()%}
+						{% if m%}
+						{% for i in m%}
+						<div class="mb-3 col-md-5 alert alert-danger mx-auto">
+							{{i}}
+						</div>
+							{% endfor%}
+						{% endif %}
+					{% endwith %}
+						
+					</form> 
+
+				</div>
+			</section> 
+			<!-- Services-->
+		
+
+			{% endblock %}

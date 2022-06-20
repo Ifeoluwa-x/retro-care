@@ -1,0 +1,30 @@
+
+{% extends 'care/userbase.html' %}
+
+{% block pagecontent %}
+      <div class="contain">
+        <div class="cases">
+          <p>🛠</p>
+          <h4>SEE PROFILE</h4>
+          <br>
+          <br>
+          <a class="btn btn-" href="/care/more"> Profile</a> 
+        </div>
+        <div class="cases">
+          <p>📖</p>
+          <h4>HISTORY</h4>
+          <br>
+          <br>
+          <a  class="btn btn-" href="{{ url_for('care_history') }}">History</a>
+        </div>
+        <div class="cases">
+          <p>🤑</p>
+          <h4>REWARD </h4>
+          <br>
+          <br>
+          <a class="btn btn-" href="{{ url_for('care_reward') }}">Reward</a>
+        </div>
+    </div>
+  </div>
+  {% endblock %}
+

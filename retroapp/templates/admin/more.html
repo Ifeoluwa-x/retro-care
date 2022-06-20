@@ -1,0 +1,63 @@
+{% extends 'admin/userbase.html' %}
+
+{% block pagecontent %}
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col" style="height: 150px; max-width: 160px;">
+            <img class="" src="/static/assets/img/{{b.care_pic}}"  style="height: 100%; max-width: 158px; margin-left: -12px;" alt="{{b.care_pic}}">
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+          <div class="col bold">
+            
+            <p><span>Name:</span> {{b.care_fname}} {{b.care_lname}}</p>
+            <p><span>Email:</span>  {{b.care_email}}</p>
+            <p><span>Gender:</span>  {{b.care_gender}}</p>
+            <p><span>Address:</span>  {{b.care_address}}</p>
+            <p><span>Phone:</span>  {{b.care_phone}}</p>
+            <p><span>Status:</span>  {{b.care_status}}</p>
+            <p><span>Next of kin:</span>  {{b.care_kin}}</p>
+            <p><span>First Guarantor name:</span>  {{b.g_fullname1}}</p>
+            <p><span>Address:</span>  {{b.g_address1}}</p>
+            <p><span>Phone:</span>  {{b.g_phone1}}</p>
+            <p><span>Second Guarantor name:</span>  {{b.g_fullname2}}</p>
+            <p><span>Address:</span>  {{b.g_address2}}</p>
+            <p><span>Phone:</span>  {{b.g_phone2}}</p>
+            
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col bold">
+            <h4>History</h4>
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Who</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              {% if subdeets:%} <!--i.e if user is logged in-->
+              <tbody>
+                {% for caregiver, booking, userclient in subdeets %}
+                <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td>{{userclient.client_fullname}}</td>
+                  <td>{{booking.booking_start_date}}</td>
+                  <td>{{booking.booking_status}}</td>
+                </tr>
+                {% endfor %}
+  
+                {% else %}
+                
+                {% endif %}
+            </table>
+            
+          </div>
+        </div>
+  </div>
+
+{% endblock %}

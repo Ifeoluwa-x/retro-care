@@ -1,0 +1,34 @@
+{% extends 'user/userbase.html' %}
+
+{% block pagecontent %}
+      <div class="contain row">
+        <div class="col">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Who</th>
+                <th scope="col">Caregiver</th>
+                <th scope="col"> Start Date</th>
+                <th scope="col"> End Date</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user, booking, userclient, caregiver in bookdeets %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{userclient.client_fullname}}</td>
+                <td>{{caregiver.care_fname}}-{{caregiver.care_lname}}</td>
+                <td>{{booking.booking_start_date}}</td>
+                <td>{{booking.booking_end_date}}</td>
+                <td>{{booking.booking_status}}</td>
+              </tr>
+              {% endfor %}
+               
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+  {% endblock %}

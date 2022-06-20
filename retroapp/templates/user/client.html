@@ -1,0 +1,64 @@
+{% extends 'user/userbase.html' %}
+
+{% block pagecontent %}
+<div class="contain">
+    <div class="row" style="width: 100%;">
+        <div class="col text-center" >
+            <h4>Tell us more about Who needs our services. Help us help you. <span style= "font-size: 20px;">😉</span></h4>
+
+        </div>
+        <div >
+            <form class="mx-auto" action="/user/client" method="post">
+                <div>
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                  </div> 
+                 <div class="col-9 mb-3 mx-auto">
+                     <label for="firstname" class="form-label">Fullname:</label>
+                    <input  name="fullname" type="text" class="form-control" placeholder="First name" aria-label="Fullname" required>
+                </div>
+                <div class="col-9 mb-3 mx-auto">
+                    <label for="inputAddress" class="form-label">Address:</label>
+                    <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+                </div>
+                <div class="col-9 mx-auto mb-4">
+                    <label for="inputgender" class="form-label">Gender:</label>
+                    <select class="form-select" name="gender">
+                        <option value="" selected>Choose Gender</option>
+                        {% for i in gender %}
+                          <option value="{{i.gender_id}}">{{i.gender}}</option>
+                        {% endfor %}
+                  </select>
+                </div>
+                <div class="col-9 mb-3 mx-auto">
+                    <label for="inputAddress2" class="form-label">Relationship:</label>
+                    <input name="client_rela" type="text" class="form-control" id="inputAddress2" placeholder="How are you related?" required>
+                </div>
+            </div>
+            <div class="col-9 mx-auto mb-4">
+                <label for="inputState" class="form-label">Status:</label>
+                <select class="form-select" name="status">
+                    <option value="" selected>Choose State</option>
+                    {% for i in status %}
+                      <option value="{{i.status_id}}">{{i.status}}</option>
+                    {% endfor %}
+              </select>
+            </div>
+               
+            <div class="col-9 mx-auto mb-4">
+                  <button class="btn btn-success" type="submit">Continue</button>
+                </div>
+                {% with m = get_flashed_messages()%}
+                {% if m%}
+                {% for i in m%}
+                    {{ i}}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </form>
+
+        </div>
+    </div>
+      
+</div>
+  {% endblock %}
+

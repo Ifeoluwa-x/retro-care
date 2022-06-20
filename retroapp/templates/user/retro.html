@@ -1,0 +1,171 @@
+{% extends 'user/base.html' %}
+
+{% block pagecontent %}
+		<!--  -->
+		<section style="min-height: 300px; margin-top: 50px;">
+			<div class="row">
+				<div class="col welcome">
+					<h1 style="color: #155869 ">Welcome To RetroCare</h1>
+				</div>
+			</div>
+		</section>
+		<!--  -->
+		<section>
+			<div class="row">
+				<div class="col">
+					<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+					  <div class="carousel-indicators">
+					    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+					  </div>
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					      <img src="/static/assets/site/first.jpg" class="d-block w-100 img-fluid" alt="...">
+					      <div class="carousel-caption d-none d-md-block">
+					        <h5>First slide label</h5>
+					        <p>Some representative placeholder content for the first slide.</p>
+					      </div>
+					    </div>
+					    <div class="carousel-item">
+					      <img src="/static/assets/site/second.jpg" class="d-block w-100 img-fluid" alt="...">
+					      <div class="carousel-caption d-none d-md-block">
+					        <h5>Second slide label</h5>
+					        <p>Some representative placeholder content for the second slide.</p>
+					      </div>
+					    </div>
+					    <div class="carousel-item">
+					      <img src="/static/assets/site/third.jpg" class="d-block w-100 img-fluid" alt="...">
+					      <div class="carousel-caption d-none d-md-block">
+					        <h5>Third slide label</h5>
+					        <p>Some representative placeholder content for the third slide.</p>
+					      </div>
+					    </div>
+					  </div>
+					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--  -->
+		<section>
+			<div class="row">
+				<div class="col about">
+					<h3>About Us</h3>
+					<p>Get Busy Living</p>
+					<p>Everyone ages. It is an inherent property of life. As our bodies and minds develop over time, we adapt to these changes by <br> modifying our decisions and actions. The later years of life can be especially challenging, but Retrocare is here to help. At<br> Retrocare, we listen to the needs of our residents in order to understand their limitations and discuss potential solutions.<br> We work with our community members to customize options that will help them lead the lives they want.</p>
+				</div>
+			</div>
+		</section>
+		<!--  -->
+		<section>
+			<div class="row">
+				<div class="col booking offset-md-1">
+					<h2>Get a Caregiver Today!</h2>
+					<br>
+					<ul>
+						<li>Get a well trained Caregiver. ✔️</li>
+						<li>Laundry and well being is guaranteed. ✔️</li>
+						<li>Extensive Cleanliness is Assured ✔️</li>
+						<li>Weekly supervision from our supervisors ✔️</li>
+					</ul>
+					<p>Schedule them, and never worry about them again. Ever!</p>
+					<a href="{{ url_for('signup') }}" class="btn btn-success p-2 mx-auto">GET STARTED</a>
+				</div>
+				<div class="col bookingimg">
+					<img src="/static/assets/site/booking.svg" class="img-fluid">
+				</div>
+			</div>
+		</section>
+		<!--  -->
+		<section class="mt-5 faqs">
+			<div class="row">
+				<div class="col offset-md-1 faq">
+				<h2>You've got questions?<br>
+				We have answers.</h2>
+				<div  class="faqimg"> <img src="/static/assets/site/faq.svg" class="img-fluid" style="height:400px; width: 400px;"></div>
+				</div>
+				<div class="col faq">
+					<div class="accordion-item mb-4">
+					    <h2 class="accordion-header" id="headingOne">
+					      <button class="accordion-button collapsed btn-hover" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="font-size: 25px;">
+					      	What is RetroCare?
+					      </button>
+					    </h2>
+					    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+					      <div class="accordion-body">
+					        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+					      </div>
+					    </div>
+				  	</div>
+					<div class="accordion-item mb-4">
+					    <h2 class="accordion-header" id="headingTwo">
+					      <button class="accordion-button collapsed btn-hover" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 25px;">
+					        How does it work?
+					      </button>
+					    </h2>
+					    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+					      <div class="accordion-body">
+					        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+					      </div>
+					    </div>
+				  	</div>
+				  	<div class="accordion-item mb-4">
+				    	<h2 class="accordion-header" id="headingThree">
+				      		<button class="accordion-button collapsed btn-hover" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="font-size: 25px;">
+				       		 Who are Caregivers?
+				      		</button>
+				   		</h2>
+				   		<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+				      		<div class="accordion-body">
+				        		<strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				      		</div>
+				    	</div>
+				  	</div>
+				  	<div class="accordion-item mb-4">
+				    	<h2 class="accordion-header" id="headingFour">
+				      		<button class="accordion-button collapsed btn-hover" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="font-size: 25px;">
+				       		 Who are Caregivers?
+				      		</button>
+				   		</h2>
+				   		<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+				      		<div class="accordion-body">
+				        		<strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				      		</div>
+				    	</div>
+				  	</div>
+				  	<div class="accordion-item mb-4">
+				    	<h2 class="accordion-header" id="headingFive">
+				      		<button class="accordion-button collapsed btn-hover" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="font-size: 25px;">
+				       		 Who are Caregivers?
+				      		</button>
+				   		</h2>
+				   		<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+				      		<div class="accordion-body">
+				        		<strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				      		</div>
+				    	</div>
+				  	</div>
+
+				</div>
+			</div>
+		</section>
+		<!--  -->
+		<section class="join">
+			<div class="row  join mb-5">
+				<div class="col join mb-5">
+					<h2>Want to join our team of caregivers<br> Join us today! 😁</h2>
+				<a href="{{ url_for('login') }}"><button class="btn btn-success p-2 mx-auto">JOIN US</button></a>	
+				</div>
+			</div>
+		</section>
+		<!-- ############################################################ -->
+		
+		{% endblock %}

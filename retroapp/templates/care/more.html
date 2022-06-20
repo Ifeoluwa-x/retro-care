@@ -1,0 +1,82 @@
+{% extends 'care/userbase.html' %}
+
+{% block pagecontent %}
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col" style="height: 150px; max-width: 160px;">
+            {% if caredeets.care_pic != None %}
+            <img class="" src="/static/assets/img/{{caredeets.care_pic}}"  style="height: 100%; max-width: 158px; margin-left: -12px;" alt="{{caredeets.care_pic}}">
+            {% else %}
+            <img class="card-img-top" src="/static/assets/img/placeholder.svg" style="height: 100%; max-width: 158px; " alt="Card image cap">
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+          <div class="col bold">
+            
+            <p><span>Name:</span> {{caredeets.care_fname}} {{caredeets.care_lname}}</p>
+            <p><span>Email:</span>  {{caredeets.care_email}}</p>
+            <p><span>Gender:</span>  {{caredeets.care_gender}}</p>
+            <p><span>Address:</span>  {{caredeets.care_address}}</p>
+            <p><span>Phone:</span>  {{caredeets.care_phone}}</p>
+            <p><span>Status:</span>  {{caredeets.care_status}}</p>
+            <p><span>First Guarantor name:</span>  {{caredeets.g_fullname1}}</p>
+            <p><span>Address:</span>  {{caredeets.g_address1}}</p>
+            <p><span>Phone:</span>  {{caredeets.g_phone1}}</p>
+            <p><span>Second Guarantor name:</span>  {{caredeets.g_fullname2}}</p>
+            <p><span>Address:</span>  {{caredeets.g_address2}}</p>
+            <p><span>Phone:</span>  {{caredeets.g_phone2}}</p>
+          </div>
+        </div>
+
+
+        <div class="row justify-content-center mb-4">
+          <div class="col bold">
+            <p>You have completed {{len_of}} monthly care sessions.</p>
+           
+            {% if deets:%} <!--i.e if user is logged in-->
+              {% for booking, caregiver, userclient in deets %}
+              <p>you have been currently assigned to {{userclient.client_fullname}} at {{userclient.client_address}} </p>
+              {% endfor %}
+
+              {% else %}
+              <p>You are currently unassigned</p>
+              {% endif %}
+          </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+          <div class="col bold">
+            <h4>History</h4>
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Who</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              {% if subdeets:%} <!--i.e if user is logged in-->
+              <tbody>
+                {% for caregiver, booking, userclient in subdeets %}
+                <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td>{{userclient.client_fullname}}</td>
+                  <td>{{booking.booking_start_date}}</td>
+                  <td>{{booking.booking_status}}</td>
+                </tr>
+                {% endfor %}
+  
+                {% else %}
+                
+                {% endif %}
+            </table>
+            
+          </div>
+        </div>
+  </div>
+
+{% endblock %}

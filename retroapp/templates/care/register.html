@@ -1,0 +1,274 @@
+{% extends 'care/base.html' %}
+
+{% block pagecontent %}
+			<!--First section -->
+			<section class="banner mx-auto " style="margin-top: 50px;">
+				<div class="row">
+					<div class="col banner">
+						<form class="mx-auto"  method="post" action="/care/register">
+							<div class="col-9 mb-3 mx-auto">
+							 	<label for="firstname" class="form-label">First name:</label>
+								 {% if login.fname.errors%}
+								 {{ login.fname(class_='form-control form-control-lg is-invalid', placeholder='firstname')}}
+								 <div class="mb-3 col-md-5">
+								  {%  for error in login.fname.errors %}
+								   <span>  {{error}}</span>
+									 {% endfor %}
+								  </div>
+								  {%else%}
+								  {{ login.fname(class_='form-control form-control-lg ', placeholder='firstname')}}
+								  {% endif  %}
+							</div>
+
+
+							<div class="col-9 mb-3 mx-auto">
+							  	<label for="Lastname" class="form-label">Last name:</label>
+								  {% if login.lname.errors%}
+								  {{ login.lname(class_='form-control form-control-lg is-invalid', placeholder='lastname')}}
+								  <div class="mb-3 col-md-5">
+								   {%  for error in login.lname.errors %}
+									<span>  {{error}}</span>
+									  {% endfor %}
+								   </div>
+								   {%else%}
+								   {{ login.lname(class_='form-control form-control-lg', placeholder='lastname')}}
+								   {% endif  %}
+							 </div>
+
+
+							<div class="col-9 mb-3 mx-auto">
+								<label for="inputEmail4" class="form-label">Email:</label>
+								{% if login.email.errors%}
+								{{ login.email(class_='form-control form-control-lg is-invalid', placeholder='Email')}}
+								<div class="mb-3 col-md-5">
+								 {%  for error in login.email.errors %}
+								  <span>  {{error}}</span>
+									{% endfor %}
+								 </div>
+								 {%else%}
+								 {{ login.email(class_='form-control form-control-lg ', placeholder='Email')}}
+								 {% endif  %}
+						   </div>
+
+						   
+							<div class="col-9 mb-3 mx-auto">
+								<label for="Password" class="form-label">Password:</label>
+								{% if login.pwd.errors%}
+								{{ login.pwd(class_='form-control form-control-lg is-invalid', placeholder='Password')}}
+								<div class="mb-3 col-md-5">
+								 {%  for error in login.pwd.errors %}
+								  <span>  {{error}}</span>
+									{% endfor %}
+								 </div>
+								 {%else%}
+								 {{ login.pwd(class_='form-control form-control-lg', placeholder='Password')}}
+								 {% endif  %}
+						   </div>
+
+
+
+							<div class="col-9 mb-3 mx-auto">
+								<label for="inputAddress" class="form-label">Address:</label>
+								{% if login.add.errors%}
+								{{ login.add(class_='form-control form-control-lg is-invalid', placeholder='Address')}}
+								<div class="mb-3 col-md-5">
+								 {%  for error in login.add.errors %}
+								  <span>  {{error}}</span>
+									{% endfor %}
+								 </div>
+								 {%else%}
+								 {{ login.add(class_='form-control form-control-lg ', placeholder='Address')}}
+								 {% endif  %}
+						   </div>
+
+
+							<div class="col-9 mb-3 mx-auto">
+								<label for="inputPhone" class="form-label">Phone:</label>
+									{% if login.phone.errors%}
+									{{ login.phone(class_='form-control form-control-lg is-invalid', placeholder='Phone')}}
+									<div class="mb-3 col-md-5">
+									 {%  for error in login.phone.errors %}
+									  <span>  {{error}}</span>
+										{% endfor %}
+									 </div>
+									 {%else%}
+									 {{ login.phone(class_='form-control form-control-lg ', placeholder='phone')}}
+									 {% endif  %}
+							</div>
+
+							<div class="col-9 mb-3 mx-auto">
+								<label for="inputnextofkin" class="form-label">Next of Kin:</label>
+									{% if login.kin.errors%}
+									{{ login.kin(class_='form-control form-control-lg is-invalid', placeholder='Next')}}
+									<div class="mb-3 col-md-5">
+									 {%  for error in login.kin.errors %}
+									  <span>  {{error}}</span>
+										{% endfor %}
+									 </div>
+									 {%else%}
+									 {{ login.kin(class_='form-control form-control-lg ', placeholder='Next of Kin')}}
+									 {% endif  %}
+							</div>
+
+
+							<div class="col-9 mb-3 mx-auto">
+								<label for="inputnextofkin" class="form-label">Relationship with next of kin:</label>
+									{% if login.relakin.errors%}
+									{{ login.relakin(class_='form-control form-control-lg is-invalid', placeholder='Relationship with next of kin')}}
+									<div class="mb-3 col-md-5">
+									 {%  for error in login.relakin.errors %}
+									  <span>  {{error}}</span>
+										{% endfor %}
+									 </div>
+									 {%else%}
+									 {{ login.relakin(class_='form-control form-control-lg ', placeholder='Relationship with next of kin')}}
+									 {% endif  %}
+							</div>
+							<div class="col-9 mx-auto mb-4">
+								<label for="inputgender" class="form-label">Gender:</label>
+								<select class="form-select" name="gender">
+									<option value="" selected>Choose Gender</option>
+									{% for i in genderdeets %}
+									  <option value="{{i.gender_id}}">{{i.gender}}</option>
+									{% endfor %}
+							  </select>
+							</div>
+
+							<div class="col-9 mx-auto mb-4">
+								<label for="inputState" class="form-label">Location:</label>
+								<select class="form-select" name="state">
+									<option value="" selected>Choose State</option>
+									{% for i in state %}
+									  <option value="{{i.state_id}}">{{i.state_name}}</option>
+									{% endfor %}
+							  </select>
+								<p>**For Lagos and Abuja Residents only.</p>
+
+								{% with m = get_flashed_messages() %}
+								{% for i in m %}
+								  <p class="alert alert-danger">{{i}}</p>
+								{% endfor %}
+							  {% endwith %}
+							</div>
+				<!-- ###################################################################################################################################### -->
+							<div class="col-9 mx-auto mb-4">
+								<p>* Please fill in  your Guarantor's form below.</p>
+								<p>* You have to provide two guarantors at least</p>
+								<p>* They must be a resident of your city</p>
+								<p>* They must be at least a level 10 civil servant </p>
+							</div>
+							<div class="col-9 mb-3 mx-auto">
+								<label for="fullname" class="form-label">Fullname:</label>
+								{% if login.fname1.errors%}
+								{{ login.fname1(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s fullname')}}
+								<div class="mb-3 col-md-5">
+								 {%  for error in login.fname1.errors %}
+								  <span>  {{error}}</span>
+									{% endfor %}
+								 </div>
+								 {%else%}
+								 {{ login.fname1(class_='form-control form-control-lg ', placeholder='Guarantor\'s fullname')}}
+								 {% endif  %}
+						   </div>
+
+
+
+
+
+
+						   <div class="col-9 mb-3 mx-auto">
+							   <label for="inputAddress" class="form-label">Address:</label>
+							   {% if login.add1.errors%}
+							   {{ login.add1(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s Address')}}
+							   <div class="mb-3 col-md-5">
+								{%  for error in login.add1.errors %}
+								 <span>  {{error}}</span>
+								   {% endfor %}
+								</div>
+								{%else%}
+								{{ login.add1(class_='form-control form-control-lg ', placeholder='Guarantor\'s Address')}}
+								{% endif  %}
+						  </div>
+
+
+						   <div class="col-9 mb-3 mx-auto">
+							   <label for="inputPhone" class="form-label">Phone:</label>
+								   {% if login.phone1.errors%}
+								   {{ login.phone1(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s Phone')}}
+								   <div class="mb-3 col-md-5">
+									{%  for error in login.phone1.errors %}
+									 <span>  {{error}}</span>
+									   {% endfor %}
+									</div>
+									{%else%}
+									{{ login.phone1(class_='form-control form-control-lg ', placeholder='Guarantor\'s Phone')}}
+									{% endif  %}
+						   </div>
+
+
+						   <div class="col-9 mb-3 mx-auto">
+							   <label for="fullname" class="form-label">Fullname:</label>
+							   {% if login.fname2.errors%}
+							   {{ login.fname2(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s fullname')}}
+							   <div class="mb-3 col-md-5">
+								{%  for error in login.fname2.errors %}
+								 <span>  {{error}}</span>
+								   {% endfor %}
+								</div>
+								{%else%}
+								{{ login.fname2(class_='form-control form-control-lg ', placeholder='Guarantor\'s fullname')}}
+								{% endif  %}
+						  </div>
+
+
+
+
+
+
+						  <div class="col-9 mb-3 mx-auto">
+							  <label for="inputAddress" class="form-label">Address:</label>
+							  {% if login.add2.errors%}
+							  {{ login.add2(class_='form-control form-control-lg is-invalid', placeholder='>Guarantor\'s Address')}}
+							  <div class="mb-3 col-md-5">
+							   {%  for error in login.add2.errors %}
+								<span>  {{error}}</span>
+								  {% endfor %}
+							   </div>
+							   {%else%}
+							   {{ login.add2(class_='form-control form-control-lg ', placeholder='Guarantor\'s Address')}}
+							   {% endif  %}
+						 </div>
+
+
+						  <div class="col-9 mb-3 mx-auto">
+							  <label for="inputPhone" class="form-label">Phone:</label>
+								  {% if login.phone2.errors%}
+								  {{ login.phone2(class_='form-control form-control-lg is-invalid', placeholder='Guarantor\'s Phone')}}
+								  <div class="mb-3 col-md-5">
+								   {%  for error in login.phone2.errors %}
+									<span>  {{error}}</span>
+									  {% endfor %}
+								   </div>
+								   {%else%}
+								   {{ login.phone2(class_='form-control form-control-lg ', placeholder='Guarantor\'s Phone')}}
+								   {% endif  %}
+						  </div>
+							
+
+							<div class="form-check mx-auto mb-3 col-9" >
+						      <input class="form-check-input " type="checkbox" value="" id="invalidCheck2" required>
+						      <label class="form-check-label" for="invalidCheck2">
+						        By Signing up You Agree to Our terms and conditions.
+						      </label>
+							</div>
+							
+							<div class=" mx-auto mb-3 col-9" >
+								{{ login.loginbtn(class_='btn btn-success col-12')}} 
+								{{ login.csrf_token}}
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			
+			{% endblock %}

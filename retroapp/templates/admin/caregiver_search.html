@@ -1,0 +1,51 @@
+{% extends 'admin/userbase.html' %}
+
+{% block pagecontent %}
+
+      <div class="container-fluid">
+        <div class="row justify-content-between mb-5">
+        <div class="col d-flex justify-content-end ">
+          <form action="/admin/caregivers/search" method="post">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+             <input type="text" name="search_text" id="search_text" class="form-control mb-2" placeholder="Search all fields e.g. HTML">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+       </div>
+       </div>
+
+
+
+        <div class="row justify-content-between">
+          {% for i in caredets %}
+          <div class="col-3  mb-4 justify-content-between" style="min-height: 200px;">
+            <form action="/admin/upload/{{i.care_id}}" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <input type="file" name="img" id="img" class="form-control">
+            {% if i.care_pic != None: %} 
+            <img class="card-img-top" src="/static/assets/img/{{i.care_pic}}" alt="{{i.care_pic}}">
+             
+              {% else %}
+            <img class="card-img-top" src="/static/assets/img/placeholder.svg" alt="Card image cap">
+              {% endif %} 
+                
+            <div class="card-body" style="background-color: azure;">
+              <h5 class="card-title">{{i.care_fname}} {{i.care_lname}}</h5>
+              {% if i.care_status == 'verified': %}
+                <p class="card-text badge badge-pill badge-success"> {{i.care_status}}</span></p>
+              {% elif i.care_status == 'completed': %}
+                <p class="card-text badge badge-pill badge-primary"> {{i.care_status}}</p>
+              {% else %}
+                <p class="card-text badge badge-pill badge-warning"> {{i.care_status}}</span></p>
+              {% endif %}   
+             <button type="submit" class="btn btn-warning mb-4 col-12">Upload</button>
+            </form> 
+              <br>
+              <a href="/admin/verify/{{i.care_id}}" class="btn btn-success">VERIFY</a>  <span><a href="/admin/more/{{i.care_id}}" class="btn btn-dark">See more...</a></span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+  </div>
+  
+
+{% endblock %}
