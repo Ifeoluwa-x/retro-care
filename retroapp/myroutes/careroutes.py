@@ -58,7 +58,7 @@ def register():
         else:
 
             pwd= generate_password_hash(pwd)
-            # Inserting data retrieved into the database
+            # Inserting data retrieved into the databaseeeee!
             c = Caregiver(care_email=email,
             care_pass=pwd,
             care_fname=fname, 
@@ -98,7 +98,7 @@ def login():
     else:
         '''We retrieve the form data'''
         username = request.form.get('username') #method1
-        # pwd = login.pwd.data #method 2
+        # pwd = login.pwd.data #method 2222
         pwd =  request.form.get('pwd')
         # validate
         if login.validate_on_submit():
